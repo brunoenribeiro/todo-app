@@ -1,10 +1,5 @@
 import { FormEvent, useState, useMemo } from "react";
-
-type Todo = {
-  id: string;
-  text: string;
-  status: 0 | 1 | 2;
-};
+import type { Todo } from "./types";
 
 function TodoItem({
   data,
