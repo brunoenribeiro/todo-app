@@ -28,7 +28,9 @@ export default function AddTodoForm({
         required
         style={{ padding: "0.5rem" }}
       />
-      <button type="submit">Add</button>
+      <button type="submit" style={{ paddingInline: "1rem" }}>
+        &#43;
+      </button>
     </form>
   );
 }
