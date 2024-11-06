@@ -26,14 +26,15 @@ export default function TodoItem({
           gap: "1rem",
           padding: "1rem",
           justifyContent: "space-between",
+          alignItems: "center",
         }}
       >
         <button disabled={isFirstStatus} onClick={() => onBack(data.id)}>
-          &lt;-
+          &#8592;
         </button>
         <span>{data.text}</span>
         <button disabled={isLastStatus} onClick={() => onNext(data.id)}>
-          -&gt;
+          &#8594;
         </button>
       </div>
     </div>
