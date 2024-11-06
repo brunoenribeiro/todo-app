@@ -1,7 +1,8 @@
 import { useState, useMemo } from "react";
 import type { Todo } from "./types";
 import AddTodoForm from "./components/AddTodoForm";
-import TodoItem from "./components/TodoItem";
+import WelcomeMessage from "./components/WelcomeMessage";
+import TodoColumn from "./components/TodoColumn";
 
 export function ChallengeComponent() {
   const [todos, setTodos] = useState<Todo[]>([]);
@@ -46,76 +47,36 @@ export function ChallengeComponent() {
 
   return (
     <>
-      <section
-        style={{
-          display: "grid",
-          gridTemplateColumns: "1fr 1fr 1fr",
-          gap: "1rem",
-        }}
-      >
-        <div
+      {todos.length === 0 ? (
+        <WelcomeMessage />
+      ) : (
+        <section
           style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            border: "1px solid currentColor",
-            padding: "1rem",
-            gap: "0.5rem",
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr 1fr",
+            gap: "1rem",
           }}
         >
-          <h2 style={{ textAlign: "center" }}>To Do</h2>
-          {pendingTodos.map((todo) => (
-            <TodoItem
-              key={todo.id}
-              data={todo}
-              onBack={handleTodoBack}
-              onNext={handleTodoNext}
-            />
-          ))}
-        </div>
-
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            border: "1px solid currentColor",
-            padding: "1rem",
-            gap: "0.5rem",
-          }}
-        >
-          <h2 style={{ textAlign: "center" }}>In Progress</h2>
-          {inProgressTodos.map((todo) => (
-            <TodoItem
-              key={todo.id}
-              data={todo}
-              onBack={handleTodoBack}
-              onNext={handleTodoNext}
-            />
-          ))}
-        </div>
-
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            border: "1px solid currentColor",
-            padding: "1rem",
-            gap: "0.5rem",
-          }}
-        >
-          <h2 style={{ textAlign: "center" }}>Done</h2>
-          {doneTodos.map((todo) => (
-            <TodoItem
-              key={todo.id}
-              data={todo}
-              onBack={handleTodoBack}
-              onNext={handleTodoNext}
-            />
-          ))}
-        </div>
-      </section>
+          <TodoColumn
+            title="To Do"
+            todos={pendingTodos}
+            onTodoBack={handleTodoBack}
+            onTodoNext={handleTodoNext}
+          />
+          <TodoColumn
+            title="In Progress"
+            todos={inProgressTodos}
+            onTodoBack={handleTodoBack}
+            onTodoNext={handleTodoNext}
+          />
+          <TodoColumn
+            title="Done"
+            todos={doneTodos}
+            onTodoBack={handleTodoBack}
+            onTodoNext={handleTodoNext}
+          />
+        </section>
+      )}
 
       <section style={{ marginTop: "2rem" }}>
         <AddTodoForm onSubmit={handleAddTodo} />
