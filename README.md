@@ -5,6 +5,7 @@ Welcome to my todo app. Please follow the instructions below to review it.
 ## Installation
 
 - Install Node 16: I recommend using a version manager such as [nvm](https://github.com/nvm-sh/nvm);
+  - If using nvm, run `nvm use` to leverage this project's `.nvmrc` file and use the specified Node version.
 - Install Yarn: `npm install -g yarn`;
 - Clone repository locally;
 - On your local repo:
