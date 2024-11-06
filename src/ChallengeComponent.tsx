@@ -1,5 +1,6 @@
-import { FormEvent, useState, useMemo } from "react";
+import { useState, useMemo } from "react";
 import type { Todo } from "./types";
+import AddTodoForm from "./components/AddTodoForm";
 
 function TodoItem({
   data,
@@ -56,11 +57,11 @@ export function ChallengeComponent() {
     [todos]
   );
 
-  function handleAddTodo(e: FormEvent) {
-    e.preventDefault();
-    const formData = new FormData(e.target as HTMLFormElement);
-    const text = formData.get("text") as string;
-    setTodos([...todos, { id: Date.now().toString(), text, status: 0 }]);
+  function handleAddTodo(newTodoText: string) {
+    setTodos([
+      ...todos,
+      { id: Date.now().toString(), text: newTodoText, status: 0 },
+    ]);
   }
 
   function handleTodoBack(todoId: Todo["id"]) {
@@ -155,19 +156,7 @@ export function ChallengeComponent() {
       </section>
 
       <section style={{ marginTop: "2rem" }}>
-        <form
-          onSubmit={handleAddTodo}
-          style={{ display: "flex", gap: "0.5rem" }}
-        >
-          <input
-            type="text"
-            name="text"
-            placeholder="Add task"
-            required
-            style={{ padding: "0.5rem" }}
-          />
-          <button type="submit">Add</button>
-        </form>
+        <AddTodoForm onSubmit={handleAddTodo} />
       </section>
     </>
   );
